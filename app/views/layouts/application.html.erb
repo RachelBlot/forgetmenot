@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Forgetmenot</title>
+    <title>ForgetMeNot | Un blog minimaliste</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,13 +9,26 @@
   </head>
 
   <body>
-    <section class="hero is-primary is-medium">
+
+   <% if flash[:notice] %>
+     <div class="notification is-primary global-notification">
+       <p class="notice"><%= notice %></p>
+     </div>
+   <% end %>
+
+   <% if flash[:alert] %>
+     <div class="notification is-danger global-notification">
+       <p class="alert"><%= alert %></p>
+     </div>
+   <% end %>
+
+    <section class="hero is-info is-medium is-bold">
     <!-- Hero head: will stick at the top -->
     <div class="hero-head">
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
-            <%= link_to 'Demo Blog', root_path, class: "navbar-item" %>
+            <%= link_to 'ForgetMeNot', root_path, class: "navbar-item" %>
             <span class="navbar-burger burger" data-target="navbarMenuHeroA">
               <span></span>
               <span></span>
@@ -24,7 +37,7 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
-              <%= link_to "Create New Post", new_post_path, class:"navbar-item" %>
+              <%= link_to "Écrire quelque chose", new_post_path, class:"navbar-item" %>
             </div>
           </div>
         </div>
@@ -42,4 +55,16 @@
   </section>
     <%= yield %>
 </body>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>ForgetMeNot</strong>, pour tout le monde.
+        <br>© 2018
+      </p>
+    </div>
+  </div>
+</footer>
+
 </html>
